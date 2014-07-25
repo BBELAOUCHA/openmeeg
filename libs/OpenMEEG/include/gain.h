@@ -79,7 +79,7 @@ namespace OpenMEEG {
                 Matrix mtemp(Head2EEGMat.nlin(),HeadMat.nlin());
                 Jacobi<SymMatrix> M(HeadMat);    // Jacobi preconditionner
                 #pragma omp parallel for
-                for ( unsigned i = 0; i < LeadField.nlin(); ++i) {
+                for (unsigned i=0;i<LeadField.nlin();++i) {
                     Vector vtemp(HeadMat.nlin());
                     GMRes(HeadMat, M, vtemp, Head2EEGMat.getlin(i), 1e3, 1e-7, HeadMat.nlin()); // max number of iteration = 1000, and precision=1e-7 (1e-5 for faster resolution)
                     mtemp.setlin(i, vtemp);
@@ -114,7 +114,7 @@ namespace OpenMEEG {
                 Matrix mtemp(Head2MEGMat.nlin(),HeadMat.nlin()); 
                 Jacobi<SymMatrix> M(HeadMat);    // Jacobi preconditionner
                 #pragma omp parallel for
-                for ( unsigned i = 0; i < LeadField.nlin(); ++i) {
+                for (unsigned i=0;i<LeadField.nlin();++i) {
                     Vector vtemp(HeadMat.nlin());
                     GMRes(HeadMat, M, vtemp, Head2MEGMat.getlin(i), 1e3, 1e-7, HeadMat.nlin()); // max number of iteration = 1000, and precision=1e-7 (1e-5 for faster resolution)
                     mtemp.setlin(i,vtemp);
@@ -154,7 +154,7 @@ namespace OpenMEEG {
                 Matrix mtemp(RHS.nlin(), HeadMat.nlin()); 
                 Jacobi<SymMatrix> M(HeadMat); // Jacobi preconditionner
                 #pragma omp parallel for
-                for ( unsigned i = 0; i < RHS.nlin(); ++i) {
+                for (unsigned i=0;i<RHS.nlin();++i) {
                     Vector vtemp(HeadMat.nlin());
                     GMRes(HeadMat, M, vtemp, RHS.getlin(i), 1e3, 1e-7, HeadMat.nlin()); // max number of iteration = 1000, and precision=1e-7 (1e-5 for faster resolution)
                     mtemp.setlin(i, vtemp);
