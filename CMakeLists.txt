@@ -62,15 +62,8 @@ test_big_endian(WORDS_BIGENDIAN)
 
 include(VtkOption)
 include(GiftiOption)
-include(UseAtlas)
+include(BlasLapack)
 include(UseOpenMP)
-
-#   Detect Fortran to C interface.
-
-if (USE_ATLAS)
-    include(FortranCInterface)
-    FortranCInterface_HEADER(FC.h MACRO_NAMESPACE "FC_" FROM_LIBRARY blas[daxpy])
-endif()
 
 Dependencies(OpenMEEG matio)
 
@@ -269,7 +262,7 @@ install(FILES ${PROJECT_SOURCE_DIR}/LICENSE.txt  ${PROJECT_SOURCE_DIR}/README.rs
 install(FILES ${OpenMEEG_BINARY_DIR}/OpenMEEGConfigure.h
         DESTINATION ${OPENMEEG_HEADER_INSTALLDIR} COMPONENT Development)
 
-if (USE_ATLAS)
+if (FC_INTERFACE)
     install(FILES ${OpenMEEG_BINARY_DIR}/FC.h
             DESTINATION ${OPENMEEG_HEADER_INSTALLDIR} COMPONENT Development)
 endif()

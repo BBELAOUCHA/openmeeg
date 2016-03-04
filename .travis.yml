@@ -8,7 +8,7 @@ install:
               -DBUILD_TESTING:BOOL=ON
               -DPYTHON_WRAP:BOOL=ON
               -DUSE_VTK:BOOL=OFF
-              -DUSE_ATLAS:BOOL=ON
+              -DBLASLAPACK_IMPLEMENTATION:STRING=Atlas
               -DUSE_SYSTEM_MATIO:BOOL=ON
               -DCMAKE_SKIP_RPATH:BOOL=OFF
               ..
